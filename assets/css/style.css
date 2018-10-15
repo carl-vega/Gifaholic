@@ -1,0 +1,8 @@
+body {
+  background-image: url("../images/background-triangle-white-gray.svg");
+  background-repeat: repeat-y;
+  background-size: cover;
+}
+#top {
+  margin-top: 5%;
+}
