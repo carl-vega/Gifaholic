@@ -1,9 +1,6 @@
 body {
   background-image: url("../images/background-triangle-white-gray.svg");
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-size: 100% auto;
 }
 #top {
   margin-top: 5%;
