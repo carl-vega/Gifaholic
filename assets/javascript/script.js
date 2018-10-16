@@ -2,7 +2,28 @@ $(document).ready(function() {
   // ===========================================================================
   // variables
   // ===========================================================================
-
+  var gifButtonsToLoad = [
+    "waiting",
+    "thanks",
+    "shocked",
+    "nope",
+    "laughing",
+    "thumbs up",
+    "popcorn",
+    "good luck",
+    "eye roll",
+    "congratulations",
+    "whatever",
+    "dancing",
+    "mind blown",
+    "flirting",
+    "excited",
+    "confused",
+    "yes",
+    "happy",
+    "wtf",
+    "high five"
+  ];
   /**
    * function to build query url of gifs after button is clicked
    * @param {*} event
@@ -57,20 +78,23 @@ $(document).ready(function() {
     });
   }
 
-  // search bar submission function to create buttons/badge-pills to be queried later
-  function pillMaker(event) {
+  function submitForm(event) {
     event.preventDefault();
     var search = $("#gif")
       .val()
       .trim();
-    $("#gif").val(" ");
+    pillMaker(search);
+  }
+
+  // search bar submission function to create buttons/badge-pills to be queried later
+  function pillMaker(text) {
     var newPill = $("<a>");
     newPill
-      .attr("value", search)
+      .attr("value", text)
       .attr("href", "#")
       .addClass("badge badge-pill badge-primary")
       .click(gifQuery)
-      .text(search);
+      .text(text);
     $("#pill-box").append(newPill);
   }
 
@@ -93,5 +117,8 @@ $(document).ready(function() {
   }
 
   // function handlers
-  $("#gif-form").on("submit", pillMaker);
+  $("#gif-form").on("submit", submitForm);
+  for (var i = 0; i < gifButtonsToLoad.length; i++) {
+    pillMaker(gifButtonsToLoad[i]);
+  }
 });
