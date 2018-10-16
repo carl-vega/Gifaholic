@@ -6,7 +6,7 @@
 
     <meta charset="UTF-8">
     <title>Gifaholic</title>
-    <link rel="mask-icon" href="./assets/images/beard-fohawk.svg" />
+    <link rel="icon" href="./assets/images/beard-fohawk.ico" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
@@ -16,18 +16,16 @@
 <body>
 
     <div class="container" id="top">
-        <form class="d-flex flex-row" id="gif-form">
-            <input class="form-control form-control-lg" type="text" placeholder="Get some gifs in your life" id="gif">
+        <form class="d-flex flex-row" autocomplete="off" id="gif-form">
+            <input class="form-control form-control-lg" type="text" autocomplete="off" placeholder="Get some gifs in your life"
+                id="gif">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <div class="row">
-            <div class="col-12" id="pill-box">
-                <a href="#" class="badge badge-pill badge-primary">Primary</a>
-
-            </div>
+            <div class="col-12" id="pill-box"></div>
         </div>
         <div class="row">
-            <div class="card-column" id="gif-dump">
+            <div class="card-columns p-3" id="gif-dump">
 
             </div>
         </div>

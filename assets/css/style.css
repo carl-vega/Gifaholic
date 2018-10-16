@@ -1,8 +1,30 @@
 body {
   background-image: url("../images/background-triangle-white-gray.svg");
-  background-repeat: repeat-y;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 #top {
   margin-top: 5%;
+}
+#rated:hover {
+  cursor: default;
+}
+#gif:hover {
+  cursor: pointer;
+}
+.badge {
+  font-size: 16px !important;
+  font-weight: normal !important;
+  margin-right: 8px;
+  margin-top: 16px;
+  padding: 8px 16px;
+}
+input {
+  outline: none;
+  border: 1px solid #ccc !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }

@@ -9,9 +9,10 @@ $(document).ready(function() {
    */
   function gifQuery(event) {
     event.preventDefault();
-    empty();
-    var query = $(event.currentTarget)
-      .val()
+    $("#gif-dump").empty();
+
+    var query = $(event.target)
+      .text()
       .trim();
     var queryUrl =
       "http://api.giphy.com/v1/gifs/search?q=" +
@@ -28,49 +29,69 @@ $(document).ready(function() {
         var image = $("<img>");
         var imageOverlay = $("<div>");
         var cardTitle = $("<h3>");
+        var rate = $("<div>");
+        rate
+          .addClass("badge badge-dark text-uppercase m-0")
+          .attr("title", "Rated " + response.data[i].rating)
+          .append(response.data[i].rating);
         cardTitle
           .addClass("card-title")
-          .text("Rating: " + response.data[i].rating);
-        imageOverlay.addClass("card-img-overlay").append(cardTitle);
+          .attr("id", "rated")
+          .html(rate);
+        imageOverlay
+          .addClass("card-img-overlay p-0")
+          .attr("id", "gif")
+          .append(cardTitle);
         image
-          .addClass("card-img")
-          .attr("src", response.data[i].images.original_still)
-          .attr("data-still", response.data[i].images.original_still)
-          .attr("data-animate", response.data[i].images.original)
+          .addClass("card-img gif")
+          .attr("src", response.data[i].images.original_still.url)
+          .attr("data-still", response.data[i].images.original_still.url)
+          .attr("data-animate", response.data[i].images.original.url)
           .attr("data-state", "still");
-        card.addClass("card text-info").append(image, imageOverlay);
+        card
+          .addClass("card text-info")
+          .click(stillAnimate)
+          .append(image, imageOverlay);
+        $("#gif-dump").append(card);
       }
     });
   }
 
   // search bar submission function to create buttons/badge-pills to be queried later
-  function pillMaker() {
+  function pillMaker(event) {
+    event.preventDefault();
     var search = $("#gif")
       .val()
       .trim();
+    $("#gif").val(" ");
     var newPill = $("<a>");
     newPill
       .attr("value", search)
       .attr("href", "#")
       .addClass("badge badge-pill badge-primary")
+      .click(gifQuery)
       .text(search);
     $("#pill-box").append(newPill);
   }
 
   // function to pause and play gif upon click of gif
   function stillAnimate() {
-    var state = $(this).attr("data-state");
+    event.preventDefault();
+    var card = $(event.currentTarget);
+    var img = card.find("img");
+    var overlay = card.find(".card-img-overlay");
+    var state = img.attr("data-state");
     if (state === "still") {
-      $(this).attr("src", $(this).attr("data-animate"));
-      $(this).attr("data-state", "animate");
+      img.attr("src", img.attr("data-animate"));
+      img.attr("data-state", "animate");
+      overlay.addClass("d-none");
     } else {
-      $(this).attr("src", $(this).attr("data-still"));
-      $(this).attr("data-state", "still");
+      img.attr("src", img.attr("data-still"));
+      img.attr("data-state", "still");
+      overlay.removeClass("d-none");
     }
   }
 
   // function handlers
-  $(".gif").on("click", stillAnimate);
   $("#gif-form").on("submit", pillMaker);
-  $(".badge").on("click", gifQuery);
 });
