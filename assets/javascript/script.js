@@ -36,7 +36,7 @@ $(document).ready(function() {
       .text()
       .trim();
     var queryUrl =
-      "http://api.giphy.com/v1/gifs/search?q=" +
+      "https://api.giphy.com/v1/gifs/search?q=" +
       query +
       "&api_key=PZkBqK7E2LHLEff0B49BQGIW5uTK3Dm7";
 
